@@ -34,8 +34,9 @@ def send_tokens( receiver_pk, tx_amount ):
     signed_tx = tx.sign(sk)
 
     tx_confirm = acl.send_transaction(signed_tx)
-    wait_for_confirmation(acl, txid=signed_tx.transaction.get_txid())
-    txid = signed_tx.transaction.get_txid()
+    txinfo = wait_for_confirmation(acl, txid=signed_tx.transaction.get_txid())
+    txid = txinfo.get(transaction)
+    
     sender_pk = signed_tx.transaction.sender
 
     return sender_pk, txid
