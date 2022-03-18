@@ -15,10 +15,10 @@ headers = {
 acl = algod.AlgodClient(algod_token, algod_address, headers)
 min_balance = 100000 #https://developer.algorand.org/docs/features/accounts/#minimum-balance
 
-mnemonic_secret = "glad current dentist cook mule track school banner double either approve chapter hood creek melt witness concert garden area photo target aware radio abstract sauce"
+
+mnemonic_secret = "exclude shop before cheap forward gadget loop route skin trash absent feed alien cluster federal regular mix mixed result soon mixed radio cage abstract try"
 sk = mnemonic.to_private_key(mnemonic_secret)
 pk = mnemonic.to_public_key(mnemonic_secret)
-
 def send_tokens( receiver_pk, tx_amount ):
     params = acl.suggested_params()
     gen_hash = params.gh
@@ -37,6 +37,7 @@ def send_tokens( receiver_pk, tx_amount ):
         tx_confirm = acl.send_transaction(signed_tx)
         print("ID is ", signed_tx.transaction.get_txid())
         wait_for_confirmation(acl, txid=signed_tx.transaction.get_txid())
+        txid = signed_tx.transaction.get_txid()
         sender_pk = signed_tx.transaction.sender
     except Exception as e:
         print(e)
